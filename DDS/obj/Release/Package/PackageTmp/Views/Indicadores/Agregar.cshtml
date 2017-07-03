@@ -1,0 +1,27 @@
+﻿@model DDS.Models.Indicador
+
+@{
+    ViewBag.Title = "Agregar indicador";
+}
+
+<form method="POST" action="Procesar">
+    <table style="margin: 0 auto">
+        <tr>
+            <td style="text-align:right">Nombre</td>
+            <td style="padding-left:10px">
+                <input style="margin: 0 auto" type="text" name="nombre" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Fórmula</td>
+            <td style="padding-left:10px">
+                <input style="margin: 0 auto" type="text" name="formula" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Enviar" />
+            </td>
+        </tr>
+    </table>
+</form>

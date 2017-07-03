@@ -1,0 +1,10 @@
+﻿@model DDS.Models.Cuenta
+
+@{
+    ViewBag.Title = "Importar cuentas";
+}
+
+<form method="POST" action="Procesar" enctype="multipart/form-data">
+    <p><input style="margin: 0 auto" type="file" name="file" /></p>
+    <p><input type="submit" value="Enviar" /></p>
+</form>

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDS", "DDS\DDS.csproj", "{2A6EC4DE-9AE2-4FB5-9A0C-A95CFD6856CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDS.Tests", "DDS.Tests\DDS.Tests.csproj", "{04151E8C-3847-4B2A-B4CC-5A1BED978C97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A6EC4DE-9AE2-4FB5-9A0C-A95CFD6856CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A6EC4DE-9AE2-4FB5-9A0C-A95CFD6856CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A6EC4DE-9AE2-4FB5-9A0C-A95CFD6856CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A6EC4DE-9AE2-4FB5-9A0C-A95CFD6856CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04151E8C-3847-4B2A-B4CC-5A1BED978C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04151E8C-3847-4B2A-B4CC-5A1BED978C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04151E8C-3847-4B2A-B4CC-5A1BED978C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04151E8C-3847-4B2A-B4CC-5A1BED978C97}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

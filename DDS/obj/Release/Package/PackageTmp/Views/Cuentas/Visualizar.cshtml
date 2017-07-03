@@ -1,0 +1,59 @@
+﻿@model DDS.Models.Cuenta
+
+@{
+    ViewBag.Title = "Visualizar cuentas";
+}
+
+<form method="POST" action="Visualizar">
+    <table style="margin: 0 auto">
+        <tr>
+            <td style="text-align:right">Empresa</td>
+            <td style="padding-left:10px">
+                <select name="nombre" style="min-width:200px">
+                    @foreach (string n in ViewBag.Nombres) {
+                        if (@n == ViewBag.Nombre) {
+                            <option selected>@n</option>
+                        } else {
+                            <option>@n</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right">Período</td>
+            <td style="padding-left:10px">
+                <select name="período" style="min-width:200px">
+                    @foreach (int p in ViewBag.Períodos) {
+                        if (@p == ViewBag.Período) {
+                            <option selected>@p</option>
+                        } else {
+                            <option>@p</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Buscar" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+@if (ViewBag.Cuentas != null) {
+    <br />
+    <table class="table">
+        <tr>
+            <th style="text-align:center">Cuenta</th>
+            <th style="text-align:center">Valor</th>
+        </tr>
+    @foreach (DDS.Models.Cuenta c in ViewBag.Cuentas) {
+        <tr>
+            <td>@c.nombre</td>
+            <td>@c.valor</td>
+        </tr>
+    }
+    </table>
+}

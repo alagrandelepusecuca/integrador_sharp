@@ -33,9 +33,9 @@ namespace DDS.Controllers {
         }
 
         public ActionResult Visualizar(string nombreEmpresa = null, int período = 0) {
-            ViewBag.Nombre = nombreEmpresa;
+            ViewBag.NombreEmpresa = nombreEmpresa;
+            ViewBag.NombresEmpresas = Empresa.nombres;
             ViewBag.Período = período;
-            ViewBag.Nombres = Empresa.nombres;
             ViewBag.Períodos = Empresa.períodos;
             if (nombreEmpresa != null && período != 0)
                 ViewBag.Cuentas = Empresa.Get(nombreEmpresa).CuentasDelPeríodo(período);

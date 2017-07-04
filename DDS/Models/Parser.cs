@@ -15,20 +15,15 @@ namespace DDS.Models {
             NOMBRE = StreamTokenizer.TT_WORD
         }
 
-        private String formula = null;
+        private string formula = null;
         private StreamTokenizer tokens;
         private char token;
         private double valor = 0;
-        private String error = "";
+        private string error = "";
         private Dictionary<string, Cuenta> cuentas = new Dictionary<string, Cuenta>();
 
-        public Parser(string formula) {
+        internal Parser(string formula) {
             this.formula = formula;
-        }
-
-        internal double CalcularValor(Empresa emp, int per) {
-            cuentas = emp.DiccionarioCuentasDelPeríodo(per);
-            return CalcularValor();
         }
 
         internal double CalcularValor(Dictionary<string, Cuenta> ccs) {
@@ -36,12 +31,21 @@ namespace DDS.Models {
             return CalcularValor();
         }
 
+        private Stream GenerateStreamFromString(string s) {
+            MemoryStream stream = new MemoryStream();
+            StreamWriter writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
+        }
+
         private double CalcularValor() {
-            StreamReader reader = new StreamReader(formula);
-            tokens = new StreamTokenizer(reader);
+            StreamReader sr = new StreamReader(GenerateStreamFromString(formula));
+            tokens = new StreamTokenizer(sr);
 
             foreach (Símbolos s in Enum.GetValues(typeof(Símbolos)))
-                tokens.OrdinaryChar((char) s);
+                tokens.OrdinaryChar((int) s);
 
             GetToken();
             valor = Expr();

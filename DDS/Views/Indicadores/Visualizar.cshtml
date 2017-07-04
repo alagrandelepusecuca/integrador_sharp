@@ -7,11 +7,25 @@
 <form method="POST" action="Visualizar">
     <table style="margin: 0 auto">
         <tr>
+            <td style="text-align:right">Indicador</td>
+            <td style="padding-left:10px">
+                <select name="nombreIndicador" style="min-width:200px">
+                    @foreach (string n in ViewBag.NombresIndicadores) {
+                        if (@n == ViewBag.NombreIndicador) {
+                            <option selected>@n</option>
+                        } else {
+                            <option>@n</option>
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
             <td style="text-align:right">Empresa</td>
             <td style="padding-left:10px">
-                <select name="nombre" style="min-width:200px">
-                    @foreach (string n in ViewBag.Nombres) {
-                        if (@n == ViewBag.Nombre) {
+                <select name="nombreEmpresa" style="min-width:200px">
+                    @foreach (string n in ViewBag.NombresEmpresas) {
+                        if (@n == ViewBag.NombreEmpresa) {
                             <option selected>@n</option>
                         } else {
                             <option>@n</option>
@@ -46,14 +60,12 @@
     <br />
     <table class="table">
         <tr>
-            <th style="text-align:center">Cuenta</th>
+            <th style="text-align:center">Indicador</th>
             <th style="text-align:center">Valor</th>
         </tr>
-        @foreach (DDS.Models.Cuenta c in ViewBag.Cuentas) {
-            <tr>
-                <td>@c.nombre</td>
-                <td>@c.valor</td>
-            </tr>
-        }
+        <tr>
+            <td>ViewBag.NombreIndicador</td>
+            <td>ViewBag.Valor</td>
+        </tr>
     </table>
 }

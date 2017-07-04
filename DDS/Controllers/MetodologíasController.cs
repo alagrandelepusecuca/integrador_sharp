@@ -13,11 +13,14 @@ namespace DDS.Controllers {
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Visualizar(string nombreMetodología, string nombreEmpresa = null, int período = 0) {
+        public ActionResult Visualizar(string nombreMetodología = null, string nombreEmpresa = null, int período = 0) {
             ViewBag.NombreMetodología = nombreMetodología;
-            ViewBag.Nombre = nombreEmpresa;
+            ViewBag.NombresMetodologías = Metodología.nombres;
+            ViewBag.NombreEmpresa = nombreEmpresa;
+            ViewBag.NombresEmpresas = Empresa.nombres;
             ViewBag.Período = período;
-            if (nombreEmpresa != null && período != 0)
+            ViewBag.Períodos = Empresa.períodos;
+            if (nombreMetodología != null && nombreEmpresa != null && período != 0)
                 ViewBag.Valor = Metodología.Get(nombreMetodología).CalcularValor(Empresa.Get(nombreEmpresa).DiccionarioCuentasDelPeríodo(período));
             return View();
         }

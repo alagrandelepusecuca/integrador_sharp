@@ -33,6 +33,14 @@ namespace DDS.Models {
             return listaCuentas;
         }
 
+        internal Dictionary<string, Cuenta> DiccionarioCuentasDelPeríodo(int period) {
+            Dictionary<string, Cuenta> dictCuentas = new Dictionary<string, Cuenta>();
+            foreach (Cuenta c in cuentas)
+                if (c.período == period)
+                    dictCuentas.Add(c.nombre, c);
+            return dictCuentas;
+        }
+
         internal Cuenta Cuenta(string nombre, int period) {
             foreach (Cuenta c in cuentas)
                 if (c.nombre == nombre && c.período == period)

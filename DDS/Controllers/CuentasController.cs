@@ -32,13 +32,13 @@ namespace DDS.Controllers {
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Visualizar(string nombre = null, int período = 0) {
-            ViewBag.Nombre = nombre;
+        public ActionResult Visualizar(string nombreEmpresa = null, int período = 0) {
+            ViewBag.Nombre = nombreEmpresa;
             ViewBag.Período = período;
             ViewBag.Nombres = Empresa.nombres;
             ViewBag.Períodos = Empresa.períodos;
-            if (nombre != null && período != 0)
-                ViewBag.Cuentas = Empresa.Get(nombre).CuentasDelPeríodo(período);
+            if (nombreEmpresa != null && período != 0)
+                ViewBag.Cuentas = Empresa.Get(nombreEmpresa).CuentasDelPeríodo(período);
             return View();
         }
     }

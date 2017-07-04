@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using DDS.Models;
+using System.Web.Mvc;
 
 namespace DDS.Controllers {
     public class MetodologíasController : Controller {
@@ -6,7 +7,18 @@ namespace DDS.Controllers {
             return View();
         }
 
-        public ActionResult Visualizar() {
+        [HttpPost]
+        public ActionResult Procesar(string nombre, string formula) {
+            new Metodología(nombre, formula);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Visualizar(string nombreMetodología, string nombreEmpresa = null, int período = 0) {
+            ViewBag.NombreMetodología = nombreMetodología;
+            ViewBag.Nombre = nombreEmpresa;
+            ViewBag.Período = período;
+            if (nombreEmpresa != null && período != 0)
+                ViewBag.Valor = Metodología.Get(nombreMetodología).CalcularValor(Empresa.Get(nombreEmpresa).DiccionarioCuentasDelPeríodo(período));
             return View();
         }
     }

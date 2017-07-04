@@ -17,9 +17,9 @@ namespace DDS.Models {
 
         private string formula = null;
         private StreamTokenizer tokens;
-        private char token;
+        private int token;
         private double valor = 0;
-        private string error = "";
+        private string error = null;
         private Dictionary<string, Cuenta> cuentas = new Dictionary<string, Cuenta>();
 
         internal Parser(string formula) {
@@ -41,6 +41,8 @@ namespace DDS.Models {
         }
 
         private double CalcularValor() {
+            valor = 0;
+            error = null;
             StreamReader sr = new StreamReader(GenerateStreamFromString(formula));
             tokens = new StreamTokenizer(sr);
 
@@ -54,11 +56,11 @@ namespace DDS.Models {
             return valor;
         }
 
-        bool EsVálido() { return error == ""; }
+        internal bool EsVálido() { return error == null; }
 
         private void GetToken() {
             try {
-                token = (char) tokens.NextToken();
+                token = tokens.NextToken();
             } catch (IOException e) {
                 GenError("error de e/s " + e.ToString());
             }
@@ -66,7 +68,7 @@ namespace DDS.Models {
 
         // Devuelve verdadero si el token actual coincide con el recibido
         private bool EsToken(Símbolos ss) {
-            return token == (char) ss;
+            return (Símbolos) token == ss;
         }
 
         // expr = [addop] term {(addop) term} FIN
@@ -97,13 +99,18 @@ namespace DDS.Models {
             double valor = 0;
             if (EsToken(Símbolos.NOMBRE)) {
                 String id = tokens.StringValue;
-                Indicador i = Indicador.Get(id);
-                if (i != null) {
-                    valor = i.CalcularValor(cuentas);
+                Metodología m = Metodología.Get(id);
+                if (m != null) {
+                    valor = m.CalcularValor(cuentas);
                 } else {
-                    bool cuentaEstá = cuentas.ContainsKey(id);
-                    if (cuentaEstá) valor = cuentas[id].valor;
-                    else GenError("error por cuenta no encontrada");
+                    Indicador i = Indicador.Get(id);
+                    if (i != null) {
+                        valor = i.CalcularValor(cuentas);
+                    } else {
+                        bool cuentaEstá = cuentas.ContainsKey(id);
+                        if (cuentaEstá) valor = cuentas[id].valor;
+                        else GenError("error por nombre no encontrado");
+                    }
                 }
                 GetToken();
             } else if (Aceptar(Símbolos.ABRE)) {
@@ -138,11 +145,11 @@ namespace DDS.Models {
         }
 
         public static bool EsAdic(int token) {
-            return token == (char) Símbolos.MAS || token == (char) Símbolos.MENOS;
+            return (Símbolos) token == Símbolos.MAS || (Símbolos) token == Símbolos.MENOS;
         }
 
         public static bool EsMult(int token) {
-            return token == (char) Símbolos.MULT || token == (char) Símbolos.DIVI;
+            return (Símbolos) token == Símbolos.MULT || (Símbolos) token == Símbolos.DIVI;
         }
     }
 }

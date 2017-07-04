@@ -4,7 +4,7 @@ namespace DDS.Models {
     public class Metodología {
         static Dictionary<string, Metodología> metodologías = new Dictionary<string, Metodología>();
         internal static SortedSet<string> nombres = new SortedSet<string>();
-        Parser parser;
+        internal Parser parser;
 
         internal readonly string nombre;
         internal readonly string formula;

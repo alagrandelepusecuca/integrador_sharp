@@ -530,7 +530,7 @@ namespace DDS.Models {
             if ((ctype & CT_ALPHA) != 0) {
                 int i = 0;
                 do {
-                    buf[i++] = (char)c;
+                    buf.Insert(i++, (char) c);
                     c = Read();
                     ctype = c < 0 ? CT_WHITESPACE : c < 256 ? ct[c] : CT_ALPHA;
                 } while ((ctype & (CT_ALPHA | CT_DIGIT)) != 0);

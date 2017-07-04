@@ -4,7 +4,7 @@ namespace DDS.Models {
     public class Indicador {
         static Dictionary<string, Indicador> indicadores = new Dictionary<string, Indicador>();
         internal static SortedSet<string> nombres = new SortedSet<string>();
-        Parser parser;
+        internal Parser parser;
 
         internal readonly string nombre;
         internal readonly string formula;

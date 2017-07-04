@@ -20,8 +20,15 @@ namespace DDS.Controllers {
             ViewBag.NombresEmpresas = Empresa.nombres;
             ViewBag.Período = período;
             ViewBag.Períodos = Empresa.períodos;
-            if (nombreIndicador != null && nombreEmpresa != null && período != 0)
-                ViewBag.Valor = Indicador.Get(nombreIndicador).CalcularValor(Empresa.Get(nombreEmpresa).DiccionarioCuentasDelPeríodo(período));
+
+            if (nombreIndicador != null && nombreEmpresa != null && período != 0) {
+                Indicador i = Indicador.Get(nombreIndicador);
+                Empresa e = Empresa.Get(nombreEmpresa);
+                if (i != null && e != null) {
+                    double valor = i.CalcularValor(e.DiccionarioCuentasDelPeríodo(período));
+                    if (i.parser.EsVálido()) ViewBag.Valor = valor;
+                }
+            }
             return View();
         }
     }

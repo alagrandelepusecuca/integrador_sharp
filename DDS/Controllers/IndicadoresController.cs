@@ -8,8 +8,8 @@ namespace DDS.Controllers {
         }
 
         [HttpPost]
-        public ActionResult Procesar(string nombre, string formula) {
-            new Indicador(nombre, formula);
+        public ActionResult Procesar(string nombre, string fórmula) {
+            new Indicador(nombre, fórmula);
             return RedirectToAction("Index", "Home");
         }
 

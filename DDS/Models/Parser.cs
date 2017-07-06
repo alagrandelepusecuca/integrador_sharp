@@ -11,6 +11,9 @@ namespace DDS.Models {
             DIVI = '/',
             ABRE = '(',
             CIERRA = ')',
+            MENOR = '<',
+            MAYOR = '>',
+            IGUAL = '=',
             FIN = StreamTokenizer.TT_EOF,
             NOMBRE = StreamTokenizer.TT_WORD
         }
@@ -81,6 +84,9 @@ namespace DDS.Models {
                 if (Aceptar(Símbolos.MAS)) valor += Term();
                 if (Aceptar(Símbolos.MENOS)) valor -= Term();
             }
+            if (Aceptar(Símbolos.MENOR)) valor = valor < Term() ? 1 : 0;
+            if (Aceptar(Símbolos.MAYOR)) valor = valor > Term() ? 1 : 0;
+            if (Aceptar(Símbolos.IGUAL)) valor = valor == Term() ? 1 : 0;
             return valor;
         }
 

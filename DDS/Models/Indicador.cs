@@ -7,16 +7,16 @@ namespace DDS.Models {
         internal Parser parser;
 
         internal readonly string nombre;
-        internal readonly string formula;
+        internal readonly string fórmula;
 
         internal static Indicador Get(string nombre) {
             return indicadores.ContainsKey(nombre) ? indicadores[nombre] : null;
         }
 
-        internal Indicador(string nombre, string formula) {
+        internal Indicador(string nombre, string fórmula) {
             this.nombre = nombre;
-            this.formula = formula;
-            parser = new Parser(formula);
+            this.fórmula = fórmula;
+            parser = new Parser(fórmula);
             nombres.Add(nombre);
             indicadores.Add(nombre, this);
         }

@@ -23,29 +23,37 @@
         <tr>
             <td style="text-align:right">Empresa</td>
             <td style="padding-left:10px">
-                <select name="nombreEmpresa" style="min-width:200px">
-                    @foreach (string n in ViewBag.NombresEmpresas) {
-                        if (@n == ViewBag.NombreEmpresa) {
-                            <option selected>@n</option>
-                        } else {
-                            <option>@n</option>
+                    @if (ViewBag.EsComparativo != null && ViewBag.EsComparativo) {
+                        <p style="margin: 0 auto">Todas</p>
+                    } else {
+                        <select name="nombreEmpresa" style="min-width:200px">
+                        @foreach (string n in ViewBag.NombresEmpresas) {
+                            if (@n == ViewBag.NombreEmpresa && ViewBag.EsComparativo != null && !ViewBag.EsComparativo) {
+                                <option selected>@n</option>
+                            } else {
+                                <option>@n</option>
+                            }
                         }
+                        </select>
                     }
-                </select>
             </td>
         </tr>
         <tr>
             <td style="text-align:right">Período</td>
             <td style="padding-left:10px">
-                <select name="período" style="min-width:200px">
-                    @foreach (int p in ViewBag.Períodos) {
-                        if (@p == ViewBag.Período) {
-                            <option selected>@p</option>
-                        } else {
-                            <option>@p</option>
+                @if (ViewBag.EsHistórico != null && ViewBag.EsHistórico) {
+                    <p style="margin: 0 auto">Todos</p>
+                } else {
+                    <select name="período" style="min-width:200px">
+                        @foreach (int p in ViewBag.Períodos) {
+                            if (@p == ViewBag.Período) {
+                                <option selected>@p</option>
+                            } else {
+                                <option>@p</option>
+                            }
                         }
-                    }
-                </select>
+                    </select>
+                }
             </td>
         </tr>
         <tr>
@@ -56,7 +64,7 @@
     </table>
 </form>
 
-@if (ViewBag.Valor != null) {
+@if (ViewBag.Filas != null) {
     <br />
     <table class="table">
         <tr>
@@ -65,11 +73,13 @@
             <th style="text-align:center">Período</th>
             <th style="text-align:center">Valor</th>
         </tr>
-        <tr>
-            <td>@ViewBag.NombreMetodología</td>
-            <td>@ViewBag.NombreEmpresa</td>
-            <td>@ViewBag.Período</td>
-            <td>@ViewBag.Valor</td>
-        </tr>
+        @foreach (Tuple<string, int, string> fila in ViewBag.Filas) {
+            <tr>
+                <td>@ViewBag.NombreMetodología</td>
+                <td>@fila.Item1</td>
+                <td>@fila.Item2</td>
+                <td>@fila.Item3</td>
+            </tr>
+        }
     </table>
 }

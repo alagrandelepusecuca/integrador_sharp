@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DDS.Models {
     public class Empresa {
-        static Dictionary<string, Empresa> empresas = new Dictionary<string, Empresa>();
+        internal static Dictionary<string, Empresa> empresas = new Dictionary<string, Empresa>();
         internal static SortedSet<int> períodos = new SortedSet<int>();
         internal static SortedSet<string> nombres = new SortedSet<string>();
 

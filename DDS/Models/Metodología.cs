@@ -7,18 +7,24 @@ namespace DDS.Models {
         internal Parser parser;
 
         internal readonly string nombre;
-        internal readonly string formula;
+        internal readonly string fórmula;
+        internal readonly bool esTaxativo;
+        internal readonly bool esHistórico;
+        internal readonly bool esComparativo;
 
         internal static Metodología Get(string nombre) {
             return metodologías.ContainsKey(nombre) ? metodologías[nombre] : null;
         }
 
-        internal Metodología(string nombre, string formula) {
+        internal Metodología(string nombre, string fórmula, bool esTaxativo, bool esHistórico, bool esComparativo) {
             this.nombre = nombre;
-            this.formula = formula;
-            parser = new Parser(formula);
+            this.fórmula = fórmula;
+            this.esTaxativo = esTaxativo;
+            this.esHistórico = esHistórico;
+            this.esComparativo = esComparativo;
+            parser = new Parser(fórmula);
             nombres.Add(nombre);
-            metodologías.Add(formula, this);
+            metodologías.Add(nombre, this);
         }
 
         internal double CalcularValor(Dictionary<string, Cuenta> cuentas) {

@@ -82,6 +82,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CuentasControllerTest.cs" />
+    <Compile Include="Controllers\IndicadoresControllerTest.cs" />
+    <Compile Include="Controllers\MetodologiaControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
